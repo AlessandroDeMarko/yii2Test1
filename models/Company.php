@@ -33,15 +33,7 @@ class Company extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 255],
         ];
     }
-/*
-    public function relations()
-    {
-        return [
-            'industry' => [self::BELONGS_TO, 'Industry', 'industry_id'],
-            'report' => [self::HAS_MANY, 'Report', 'company_id'],
-        ];
-    }
-*/
+
     /**
      * @inheritdoc
      */

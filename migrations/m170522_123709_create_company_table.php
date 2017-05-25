@@ -11,7 +11,8 @@ class m170522_123709_create_company_table extends Migration
      * @inheritdoc
      */
     public function up()
-    {
+    { 
+      
         $this->createTable('company', [
             'id' => $this->primaryKey(),
             'name' => $this->string(),
@@ -19,41 +20,13 @@ class m170522_123709_create_company_table extends Migration
             'industry_id' => $this->integer(),
         ], 'ENGINE=InnoDB CHARSET=utf8');
 
-        $this->insert('company',
-              [
-           'id' => '1',
-           'name' => 'ООО "Союз"',
-           'inn' => '12345679',
-           'industry_id' => '1'
-              ]
-        );
-
-        $this->insert('company',
-              [
-           'id' => '2',
-           'name' => 'ЗАО "Тест"',
-           'inn' => '12345678',
-           'industry_id' => '2'
-              ]
-        );
-
-        $this->insert('company',
-              [
-           'id' => '3',
-           'name' => 'ЧП Иванов',
-           'inn' => '3245987845',
-           'industry_id' => '3'
-              ]
-        );
-
-        $this->insert('company',
-              [
-           'id' => '4',
-           'name' => 'ЧП Петров',
-           'inn' => '12395486',
-           'industry_id' => '3'
-              ]
-        );
+        Yii::$app->db->createCommand()->batchInsert('company', ['id', 'name', 'inn', 'industry_id'], [
+            [1, 'ООО "Союз"', 12345679, 1],
+            [2, 'ЗАО "Тест"', 12345678, 2],
+            [3, 'ЧП Иванов', 3245987845, 3],
+            [4, 'ЧП Петров', 12395486, 3],
+        ])->execute();
+      
     }
 
     /**

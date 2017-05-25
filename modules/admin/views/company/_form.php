@@ -18,7 +18,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'inn')->textInput() ?>
 
-    <?= $form->field($model, 'industryName')->textInput() ?>
+	<?php
+        $industry = Industry::find()->all();
+
+        $items = ArrayHelper::map($industry,'id','name');
+        $params = [
+            'prompt' => 'Выберите отрасль'
+        ];
+        echo $form->field($model, 'industry_id')->dropDownList($items, $params);    
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

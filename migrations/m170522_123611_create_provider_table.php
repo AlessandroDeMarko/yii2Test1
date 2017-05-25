@@ -12,24 +12,17 @@ class m170522_123611_create_provider_table extends Migration
      */
     public function up()
     {
+      
         $this->createTable('provider', [
             'id' => $this->primaryKey(),
             'name' => $this->string(),
         ], 'ENGINE=InnoDB CHARSET=utf8');
 
-        $this->insert('provider',
-              [
-           'id' => '1',
-           'name' => 'Донецэнерго'
-              ]
-        );
-
-        $this->insert('provider',
-              [
-           'id' => '2',
-           'name' => 'Донецкуголь'
-              ]
-        );
+        Yii::$app->db->createCommand()->batchInsert('provider', ['id', 'name'], [
+            [1, 'Донецэнерго'],
+            [2, 'Донецкуголь'],
+        ])->execute();
+      
     }
 
     /**

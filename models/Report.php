@@ -38,14 +38,7 @@ class Report extends \yii\db\ActiveRecord
             [['period'], 'safe'],
         ];
     }
-/*
-public function relations()
-    {
-        return [
-           'company' => [self::HAS_ONE, 'Company', ['company_id' => 'id']],
-        ];
-    }
-*/
+
     /**
      * @inheritdoc
      */

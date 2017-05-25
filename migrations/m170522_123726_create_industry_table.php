@@ -12,31 +12,18 @@ class m170522_123726_create_industry_table extends Migration
      */
     public function up()
     {
+      
         $this->createTable('industry', [
             'id' => $this->primaryKey(),
             'name' => $this->string(),
         ], 'ENGINE=InnoDB CHARSET=utf8');
 
-        $this->insert('industry',
-              [
-           'id' => '1',
-           'name' => 'Мясная'
-              ]
-        );
-
-        $this->insert('industry',
-              [
-           'id' => '2',
-           'name' => 'Молочная'
-              ]
-        );
-
-        $this->insert('industry',
-              [
-           'id' => '3',
-           'name' => 'Строительная'
-              ]
-        );
+      Yii::$app->db->createCommand()->batchInsert('industry', ['id', 'name'], [
+          [1, 'Мясная'],
+          [2, 'Молочная'],
+          [3, 'Строительная'],
+      ])->execute();
+      
     }
 
     /**
